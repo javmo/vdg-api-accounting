@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  ganache:
+    image: trufflesuite/ganache-cli:v6.12.2
+    ports:
+      - '8545:8545'
+    command: '-h 0.0.0.0 -i 5777'
+  vdg-web-accounting:
+    image: javmo94/vdg-web-accounting:develop
+    ports:
+      - '80:80'
+    environment: # Añade la sección environment
+      - REACT_APP_API_URL=http://localhost:3000
+      - GENERATE_SOURCEMAP=false

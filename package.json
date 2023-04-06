@@ -1,0 +1,45 @@
+{
+  "name": "vdg-api-accounting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon src/index.js --ignore contracts migrations",
+    "start": "node src/index.js",
+    "migrate": "truffle migrate",
+    "deploy-and-start": "npm run migrate && npm run start",
+    "postinstall": "npm run build",
+    "build": "cross-env NODE_ENV=production ",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "swagger-autogen": "node swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javmo/vdg-api-accounting.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javmo/vdg-api-accounting/issues"
+  },
+  "homepage": "https://github.com/javmo/vdg-api-accounting#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "firebase": "^9.19.1",
+    "morgan": "^1.10.0",
+    "node-emoji": "^1.11.0",
+    "nodemon": "^2.0.22",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.2",
+    "truffle-contract": "^4.0.31",
+    "web3": "^1.9.0"
+  },
+  "devDependencies": {
+    "winston": "^3.8.2"
+  }
+}
