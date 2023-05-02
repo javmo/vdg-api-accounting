@@ -29,8 +29,9 @@ app.use('/api/owner', require('./routes/owner.routes'));
 app.use('/api/exchange', require('./routes/exchange.routes'));
 app.use('/api/account', require('./routes/account.routes'));
 */
+app.use('/api/account', require('./routes/account.routes'));
 // swagger routes
-//app.use('/api-docs', require('./routes/api-docs'));
+app.use('/api-docs', require('./routes/api-docs'));
 
 
 
