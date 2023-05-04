@@ -15,9 +15,6 @@ IAccount.setProvider(provider);
 
 
 const getAccount = async (req, res) => {
-    // #swagger.tags = ['account']
-    // #swagger.description = 'Endpoint para obter una cuenta contable.'
-    // #swagger.parameters['address'] = { description: 'Address: 0x5E4e65926BA27467555EB562121fac00D24E9dD2.' }
     try {
         const address = req.params.address;
         logger.debug(`:book: busco Account con address: ${address} `);
@@ -45,8 +42,6 @@ const getAccount = async (req, res) => {
 
 
 const addAssetAccount = async (req, res) => {
-    // #swagger.tags = ['account']
-
     try {
         const { name, owner } = req.body;
         logger.debug(`name: ${name} , owner: ${owner} `);
@@ -64,7 +59,6 @@ const addAssetAccount = async (req, res) => {
 };
 
 const addLiabilityAccount = async (req, res) => {
-    // #swagger.tags = ['account']
     try {
         const { name, owner } = req.body;
         const coinbase = await getGenesisAddress();
@@ -80,8 +74,6 @@ const addLiabilityAccount = async (req, res) => {
 };
 
 const addResultAccount = async (req, res) => {
-     // #swagger.tags = ['account']
-
     try {
         const { owner, name, isExpense } = req.body;
         const coinbase = await getGenesisAddress();
@@ -97,7 +89,6 @@ const addResultAccount = async (req, res) => {
 };
 
 const getAllAccountDetails = async (req, res) => {
-    // #swagger.tags = ['account']
     try {
         const instanceAccountingSystem = await AccountingSystem.deployed();
         const accountsList = await instanceAccountingSystem.getAllAccountDetails();
@@ -145,7 +136,8 @@ async function getAccountsData(contractAddressAccount, accountTypeIndex, account
         name: accountName,
         balance: parseFloat(accountBalance),
         type: accountType,
-        address: accountAddress
+        account: accountAddress,
+        contract: contractAddressAccount
     };
 }
 

@@ -8,6 +8,9 @@ const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const logger = require('./services/logger');
+
+const { swaggerUi, swaggerSpec } = require('../swaggerConfig');
 
 // Initializations
 const app = express();
@@ -31,7 +34,9 @@ app.use('/api/account', require('./routes/account.routes'));
 */
 app.use('/api/account', require('./routes/account.routes'));
 // swagger routes
-app.use('/api-docs', require('./routes/api-docs'));
+logger.info(`📋 Version 1 docs are available at http://localhost:${process.env.PORT || 3000}/api-docs`);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+//app.use('/api-docs', require('./routes/api-docs'));
 
 
 
