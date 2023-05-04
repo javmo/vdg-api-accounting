@@ -78,7 +78,7 @@ router.get("/:address",getAccount);
  *               owner:
  *                 type: string
  *                 description: La dirección del propietario de la cuenta de activo.
-*                  example: "0xea7b8f0c7dbb418963104077f0e2922f72296844"
+ *                 example: "0xea7b8f0c7dbb418963104077f0e2922f72296844"
  *     responses:
  *       201:
  *         description: Cuenta de activo creada con éxito.
