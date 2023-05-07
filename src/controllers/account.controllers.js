@@ -40,6 +40,31 @@ const getAccount = async (req, res) => {
 
 };
 
+const getAccountByContract = async (req, res) => {
+    try {
+        const contract = req.params.contract;
+        logger.debug(`:book: busco Account con contract: ${contract} `);
+        const specInstIAccount = await IAccount.at(contract);
+        const addressToken = await specInstIAccount.getTokenAddress();
+
+        const instanceAccountingSystem = await AccountingSystem.deployed();
+        const accountDetails = await instanceAccountingSystem.getAccountDetails(addressToken);
+        
+        const accountTypeIndex = accountDetails['1'].toNumber();
+        
+        // Selecionamos un smart contract especifico IAccount
+  
+        const result = await getAccountsData(contract, accountTypeIndex, addressToken);
+
+  
+        res.status(201).send(result);
+    } catch (error) {
+        logger.error(`:fire: Error al interactuar con el contrato ${error}`);
+        res.status(500).send(`Error al interactuar con el contrato ${error}`);
+    }
+
+};
+
 
 const addAssetAccount = async (req, res) => {
     try {
@@ -147,5 +172,6 @@ module.exports = {
     addAssetAccount,
     addLiabilityAccount,
     addResultAccount,
-    getAllAccountDetails
+    getAllAccountDetails,
+    getAccountByContract
 }

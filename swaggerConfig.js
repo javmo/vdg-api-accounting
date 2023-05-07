@@ -40,6 +40,31 @@ const swaggerOptions = {
             },
           },
         },
+        Configuration: {
+          type: 'object',
+          properties: {
+            description: {
+              type: 'string',
+              description: 'Descripción de la configuración del asiento contable.',
+            },
+            debitAccountContract: {
+              type: 'string',
+              description: 'Dirección del contrato de la cuenta al debe.',
+              format: 'address',
+            },
+            creditAccountContract: {
+              type: 'string',
+              description: 'Dirección del contrato de la cuenta al haber.',
+              format: 'address',
+            },
+            contract: {
+              type: 'string',
+              description: 'Dirección del contrato de la configuración del asiento.',
+              format: 'address',
+            },
+          },
+          required: ['description', 'debitAccountContract', 'creditAccountContract', 'contract'],
+        },
         ErrorResponse: {
           type: "object",
           properties: {

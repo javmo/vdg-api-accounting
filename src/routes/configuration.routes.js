@@ -1,71 +1,36 @@
 const { Router } = require('express');
 const  router = Router();
 
-
-
-const { getAccount, addAssetAccount, addLiabilityAccount, addResultAccount, getAllAccountDetails, getAccountByContract } = require('../controllers/account.controllers');
+const { createConfiguration, getAllConfigurations, setConfigurationAccount, getConfigurationByContract } = require('../controllers/configuration.controllers');
 
 /**
  * @swagger
- * /api/account:
+ * /api/configuration:
  *   get:
- *     summary: Obtiene todos los detalles de las cuentas contables.
- *     tags: [account]
+ *     summary: Obtiene todos los detalles de las configuraiones de asientos.
+ *     tags: [configuration]
  *     responses:
  *       200:
- *         description: Un array que contiene todos los detalles de las cuentas contables.
+ *         description: Un array que contiene todas las configuraiones de asientos
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/AccountDetails'
+ *                 $ref: '#/components/schemas/Configuration'
  *       500:
  *         description: Error al interactuar con el contrato.
  */
-router.get('/', getAllAccountDetails);
+router.get('/', getAllConfigurations);
 
 /**
  * @swagger
- * /api/account/address/{address}:
+ * /api/configuration/contract/{contract}:
  *   get:
- *     summary: Obtiene el detalle de las cuentas contable consultada.
+ *     summary: Obtiene el detalle de la configuracion de asiento consultado por contract address.
  *     tags:
- *       - account
- *     description: Endpoint para obter una cuenta contable.
- *     parameters:
- *       - in: path
- *         name: address
- *         description: 'Address: 0x5E4e65926BA27467555EB562121fac00D24E9dD2.'
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       201:
- *         description: Información de la cuenta contable obtenida exitosamente
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               $ref: '#/components/schemas/AccountDetails'
- *       500:
- *         description: Error al interactuar con el contrato
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               $ref: '#/components/schemas/ErrorResponse'
- */
-router.get("/address/:address",getAccount);
-
-/**
- * @swagger
- * /api/account/contract/{contract}:
- *   get:
- *     summary: Obtiene el detalle de las cuentas contable consultado por contract address.
- *     tags:
- *       - account
- *     description: Endpoint para obter una cuenta contable.
+ *       - configuration
+ *     description: Endpoint para obter una configuracion.
  *     parameters:
  *       - in: path
  *         name: contract
@@ -75,12 +40,12 @@ router.get("/address/:address",getAccount);
  *           type: string
  *     responses:
  *       201:
- *         description: Información de la cuenta contable obtenida exitosamente
+ *         description: Información de la configuracion obtenida exitosamente
  *         content:
  *           application/json:
  *             schema:
  *               type: object
- *               $ref: '#/components/schemas/AccountDetails'
+ *               $ref: '#/components/schemas/Configuration'
  *       500:
  *         description: Error al interactuar con el contrato
  *         content:
@@ -89,14 +54,14 @@ router.get("/address/:address",getAccount);
  *               type: object
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-router.get("/contract/:contract", getAccountByContract);
+router.get("/contract/:contract", getConfigurationByContract);
 
 /**
  * @swagger
- * /api/account/addAssetAccount:
+ * /api/configuration:
  *   post:
- *     summary: Crea una nueva cuenta de activo.
- *     tags: [account]
+ *     summary: Crea una nueva configuracion de asiento.
+ *     tags: [configuration]
  *     requestBody:
  *       required: true
  *       content:
@@ -104,17 +69,17 @@ router.get("/contract/:contract", getAccountByContract);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               description:
  *                 type: string
- *                 description: El nombre de la cuenta de activo.
- *                 example: "Préstamos Otorgados a Largo Plazo"
+ *                 description: El descriptcion del asiento o de la configuracion.
+ *                 example: "Alta y desembolso de prestamo"
  *               owner:
  *                 type: string
- *                 description: La dirección del propietario de la cuenta de activo.
+ *                 description: La dirección del propietario de la cuenta.
  *                 example: "0xea7b8f0c7dbb418963104077f0e2922f72296844"
  *     responses:
  *       201:
- *         description: Cuenta de activo creada con éxito.
+ *         description: configuracion de asiento creada con éxito.
  *         content:
  *           application/json:
  *             schema:
@@ -122,7 +87,7 @@ router.get("/contract/:contract", getAccountByContract);
  *               properties:
  *                 tx:
  *                   type: string
- *                   description: El hash de la transacción en la que se creó la cuenta de activo.
+ *                   description: El hash de la transacción .
  *                   example: "0x00e98fb5208e16685b00fac80d393f51304631701deddd607df4ed338bfb81c6"
  *                 receipt:
  *                   type: object
@@ -181,14 +146,14 @@ router.get("/contract/:contract", getAccountByContract);
  *                   description: Detalle del error al interactuar con el contrato.
  *                   example: "Error al interactuar con el contrato: VM Exception while processing transaction: revert"
  */                     
-router.post("/addAssetAccount", addAssetAccount);
+router.post("/", createConfiguration);
 
 /**
  * @swagger
- * /api/account/addLiabilityAccount:
- *   post:
- *     summary: Crea una nueva cuenta de pasivo.
- *     tags: [account]
+ * /api/configuration:
+ *   patch:
+ *     summary: Setea cuenta Debe o Haber de  la configuracion del asiento.
+ *     tags: [configuration]
  *     requestBody:
  *       required: true
  *       content:
@@ -196,17 +161,25 @@ router.post("/addAssetAccount", addAssetAccount);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               configurationContract:
  *                 type: string
- *                 description: El nombre de la cuenta de pasivo.
- *                 example: "Deudas comerciales a pagar"
+ *                 description: direccion del contrato de configuraionc.
+ *                 example: "0x78c50D6C13A83d9dcd739F0178C289665F30ecE8"
+ *               accountContract:
+ *                 type: string
+ *                 description: La dirección del contrato de una cuenta contable IAccount.
+ *                 example: "0xea7b8f0c7dbb418963104077f0e2922f72296844"
+ *               isCredit:
+ *                 type: boolean
+ *                 description: true o false para indicar si se configura al debe o al haber.
+ *                 example: false 
  *               owner:
  *                 type: string
- *                 description: La dirección del propietario de la cuenta de pasivo.
+ *                 description: La dirección del propietario de la cuenta.
  *                 example: "0xea7b8f0c7dbb418963104077f0e2922f72296844"
  *     responses:
  *       201:
- *         description: Cuenta de pasivo creada con éxito.
+ *         description: configuracion de asiento actualizada con éxito.
  *         content:
  *           application/json:
  *             schema:
@@ -214,7 +187,7 @@ router.post("/addAssetAccount", addAssetAccount);
  *               properties:
  *                 tx:
  *                   type: string
- *                   description: El hash de la transacción en la que se creó la cuenta de pasivo.
+ *                   description: El hash de la transacción .
  *                   example: "0x00e98fb5208e16685b00fac80d393f51304631701deddd607df4ed338bfb81c6"
  *                 receipt:
  *                   type: object
@@ -272,105 +245,7 @@ router.post("/addAssetAccount", addAssetAccount);
  *                   type: string
  *                   description: Detalle del error al interactuar con el contrato.
  *                   example: "Error al interactuar con el contrato: VM Exception while processing transaction: revert"
- */
-router.post("/addLiabilityAccount", addLiabilityAccount);
-
-/**
- * @swagger
- * /api/account/addResultAccount:
- *   post:
- *     summary: Crea una nueva cuenta de resultado.
- *     tags: [account]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 description: El nombre de la cuenta de resultado.
- *                 example: Intereses ganados  
- *               owner:
- *                 type: string
- *                 description: La dirección del propietario de la cuenta de resultado.
- *                 example: "0xea7b8f0c7dbb418963104077f0e2922f72296844" 
- *               isExpense:
- *                 type: boolean
- *                 description: true o false para indicar si es gasto o beneficio.
- *                 example: false 
- *     responses:
- *       201:
- *         description: Cuenta de resultado creada con éxito.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 tx:
- *                   type: string
- *                   description: El hash de la transacción en la que se creó la cuenta de pasivo.
- *                   example: "0x00e98fb5208e16685b00fac80d393f51304631701deddd607df4ed338bfb81c6"
- *                 receipt:
- *                   type: object
- *                   properties:
- *                     transactionHash:
- *                       type: string
- *                       description: El hash de la transacción.
- *                       example: "0x00e98fb5208e16685b00fac80d393f51304631701deddd607df4ed338bfb81c6"
- *                     transactionIndex:
- *                       type: integer
- *                       description: El índice de la transacción en el bloque.
- *                       example: 0
- *                     blockHash:
- *                       type: string
- *                       description: El hash del bloque que contiene la transacción.
- *                       example: "0x5c5a04d4de21d3ef03a72a7d53ba1f159c85b8561ca7161fb6d437b0a4437b1a"
- *                     blockNumber:
- *                       type: integer
- *                       description: El número del bloque que contiene la transacción.
- *                       example: 6
- *                     from:
- *                       type: string
- *                       description: La dirección del emisor de la transacción.
- *                       example: "0xea7b8f0c7dbb418963104077f0e2922f72296844"
- *                     to:
- *                       type: string
- *                       description: La dirección del destinatario de la transacción.
- *                       example: "0xb2aab6774565fa26df4c8ab5bbf749285ebd6bdd"
- *                     gasUsed:
- *                       type: integer
- *                       description: La cantidad de gas utilizado en la transacción.
- *                       example: 699945
- *                     cumulativeGasUsed:
- *                       type: integer
- *                       description: La cantidad acumulada de gas utilizado hasta este punto en el bloque.
- *                       example: 699945
- *                     contractAddress:
- *                       type: string
- *                       nullable: true
- *                       description: La dirección del contrato desplegado (si corresponde).
- *                       example: null
- *                     logs:
- *                       type: array
- *                       items: {}
- *                       description: Los eventos emitidos durante la transacción.
- *  
- *       500:
- *         description: Error al interactuar con el contrato.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   description: Detalle del error al interactuar con el contrato.
- *                   example: "Error al interactuar con el contrato: VM Exception while processing transaction: revert"
- */
-router.post("/addResultAccount", addResultAccount);
-
-
+ */                     
+router.patch("/", setConfigurationAccount);
 
 module.exports = router;
