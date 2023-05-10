@@ -33,6 +33,7 @@ app.use('/api/exchange', require('./routes/exchange.routes'));
 app.use('/api/account', require('./routes/account.routes'));
 */
 app.use('/api/account', require('./routes/account.routes'));
+app.use('/api/configuration', require('./routes/configuration.routes'));
 // swagger routes
 logger.info(`📋 Version 1 docs are available at http://localhost:${process.env.PORT || 3000}/api-docs`);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
