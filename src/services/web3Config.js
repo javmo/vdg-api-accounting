@@ -33,5 +33,6 @@ const getGenesisAddress = () => {
 
 module.exports = {
     provider,
+    web3,
     getGenesisAddress
 };

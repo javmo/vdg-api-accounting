@@ -65,6 +65,73 @@ const swaggerOptions = {
           },
           required: ['description', 'debitAccountContract', 'creditAccountContract', 'contract'],
         },
+        WalletDetails: {
+          type: 'object',
+          properties: {
+            address: {
+              type: 'string',
+              description: 'La dirección de la cuenta contable en la blockchain',
+            },
+            privateKey: {
+              type: 'string',
+              description: 'El tipo de cuenta contable (activo o pasivo).',
+            },
+          },
+        },
+        transactionDetails: {
+          type: 'object',
+          properties: {
+            hash: {
+              type: 'string',
+              description: 'Hash de la operacion en la blockchain',
+            },
+            from: {
+              type: 'string',
+              description: 'La dirección de la cuenta FROM',
+            },
+            to: {
+              type: 'string',
+              description: 'La dirección de la cuenta TO',
+            },
+            value: {
+              type: 'number',
+              description: 'valor del movimiento o operacion en la blockchain.',
+            },
+            timestamp: {
+              type: 'timestamp',
+              description: 'timestamp.',
+            },
+          },
+        },
+        EntryDetails: {
+          type: 'object',
+          properties: {
+            debitAccountContract: {
+              type: 'string',
+              description: 'Dirección del contrato de la cuenta al debe.',
+              format: 'address',
+            },
+            creditAccountContract: {
+              type: 'string',
+              description: 'Dirección del contrato de la cuenta al haber.',
+              format: 'address',
+            },
+            amount: {
+              type: 'number',
+              description: 'Importe contabilizado',
+            },
+            hash: {
+              type: 'string',
+              description: 'hash de la operacion relacionada al asiento.',
+            },
+            contract: {
+              type: 'string',
+              description: 'Dirección del contrato de la configuración del asiento.',
+              format: 'address',
+            },
+          },
+          required: ['description', 'debitAccountContract', 'creditAccountContract', 'contract'],
+        },
         ErrorResponse: {
           type: "object",
           properties: {
