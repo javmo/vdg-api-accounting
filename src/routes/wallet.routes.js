@@ -80,9 +80,12 @@ router.get('/:privateKey', loadWallet);
  *             schema:
  *               type: object
  *               properties:
- *                 balance:
+ *                 ethBalance:
  *                   type: number
  *                   description: Balance en ETH.
+ *                 tokenBalance:
+ *                   type: number
+ *                   description: Balance en OBT.
  *               
  *       500:
  *         description: Error al interactuar con el contrato.
