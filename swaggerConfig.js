@@ -78,7 +78,7 @@ const swaggerOptions = {
             },
           },
         },
-        transactionDetails: {
+        TransactionDetails: {
           type: 'object',
           properties: {
             hash: {
