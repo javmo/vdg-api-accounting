@@ -21,7 +21,7 @@ const createWallet = async (req, res) => {
         await instanceObligationToken.transfer(
             account.address,
             gitfAmount,
-            {from: coinbase}
+            { from: coinbase }
         )
 
 
@@ -32,71 +32,15 @@ const createWallet = async (req, res) => {
     }
 };
 
-const getTransactions = async (req, res) => {
+
+const getBalance = async (req, res) => {
     try {
         const address = req.params.address
-        const currentBlockNumber = await web3.eth.getBlockNumber();
-        const startBlock = Math.max(currentBlockNumber - 10000, 0); // Reemplaza 10000 con el número de bloques que deseas revisar
-        const transactions = [];
-  
-        for (let blockNumber = startBlock; blockNumber <= currentBlockNumber; blockNumber++) {
-        const block = await web3.eth.getBlock(blockNumber, true);
-      
-  
-        block.transactions.forEach((transaction) => {
-            if (transaction.from === address || transaction.to === address) {
-        
-            transactions.push({
-                hash: transaction.hash,
-                from: transaction.from,
-                to: transaction.to,
-                value: web3.utils.fromWei(transaction.value, 'ether'),
-                timestamp: transaction.timestamp * 1000,
-            });
-            }
-        });
-        }
-
-        const instanceObligationToken = await ObligationToken.deployed();
-        const tokenTransferEvents = await instanceObligationToken.getPastEvents('allEvents', {
-            fromBlock: startBlock,
-            toBlock: 'latest',
-            filter: {
-                from: address,
-                to: address,
-            },
-        });
-
-        tokenTransferEvents.forEach((event) => {
-            if (event.returnValues.from === address || event.returnValues.to === address){
-                transactions.push({
-                    hash: event.transactionHash,
-                    from: event.returnValues.from,
-                    to: event.returnValues.to,
-                    value: web3.utils.fromWei(event.returnValues.value, 'ether'),
-                    timestamp: event.blockTimestamp * 1000,
-                });
-
-            }
-            
-        });
-
-        res.status(201).send(transactions);
-
-    } catch (error) {
-        logger.error(`:fire: Error al interactuar con el contrato ${error}`);
-        res.status(500).send(`Error al interactuar con el contrato ${error}`);
-    }
-  };
-
-  const getBalance = async (req, res) => {
-    try {
-        const address  = req.params.address
         const ethBalance = await web3.eth.getBalance(address);
         const formattedEthBalance = web3.utils.fromWei(ethBalance, 'ether');
 
         const instanceObligationToken = await ObligationToken.deployed();
-        const tokenBalance = await instanceObligationToken.balanceOf(address, {from: address} );
+        const tokenBalance = await instanceObligationToken.balanceOf(address, { from: address });
         const formattedObtBalance = web3.utils.fromWei(tokenBalance, 'ether');
 
         res.status(201).send({
@@ -108,9 +52,9 @@ const getTransactions = async (req, res) => {
         logger.error(`:fire: Error al interactuar con el contrato ${error}`);
         res.status(500).send(`Error al interactuar con el contrato ${error}`);
     }
-  }
+}
 
-  const loadWallet = async (req, res) => {
+const loadWallet = async (req, res) => {
     try {
         const privateKey = req.params.privateKey;
         const address = await web3.eth.accounts.privateKeyToAccount(privateKey);
@@ -120,7 +64,83 @@ const getTransactions = async (req, res) => {
         logger.error(`:fire: Error al interactuar con el contrato ${error}`);
         res.status(500).send(`Error al interactuar con el contrato ${error}`);
     }
-  }
+}
+
+const getTransactions = async (req, res) => {
+    try {
+        const address = req.params.address;
+        const currentBlockNumber = await web3.eth.getBlockNumber();
+        const startBlock = Math.max(currentBlockNumber - 10000, 0);
+
+        const etherTransactions = await getEtherTransactions(address, startBlock, currentBlockNumber);
+        const tokenTransactions = await getTokenTransactions(address, startBlock);
+        const transactions = etherTransactions.concat(tokenTransactions);
+        transactions.sort((a, b) => a.timestamp - b.timestamp);
+
+        res.status(200).send(transactions);
+    } catch (error) {
+        logger.error(`:fire: Error al interactuar con el contrato ${error}`);
+        res.status(500).send(`Error al interactuar con el contrato ${error}`);
+    }
+};
+
+const getEtherTransactions = async (address, startBlock, currentBlockNumber) => {
+    const transactions = [];
+
+    for (let blockNumber = startBlock; blockNumber <= currentBlockNumber; blockNumber++) {
+        const block = await web3.eth.getBlock(blockNumber, true);
+
+        for (const transaction of block.transactions) {
+            if (transaction.from === address || transaction.to === address) {
+                const timestamp = await getBlockTimestamp(transaction.blockNumber);
+
+                transactions.push({
+                    hash: transaction.hash,
+                    from: transaction.from,
+                    to: transaction.to,
+                    value: web3.utils.fromWei(transaction.value, 'ether'),
+                    timestamp: new Date(timestamp * 1000),
+                });
+            }
+        }
+    }
+
+    return transactions;
+};
+
+const getTokenTransactions = async (address, startBlock) => {
+    const instanceObligationToken = await ObligationToken.deployed();
+    const tokenTransferEvents = await instanceObligationToken.getPastEvents('allEvents', {
+        fromBlock: startBlock,
+        toBlock: 'latest',
+        filter: {
+            from: address,
+            to: address,
+        },
+    });
+
+    const transactions = [];
+
+    for (const event of tokenTransferEvents) {
+        if (event.returnValues.from === address || event.returnValues.to === address) {
+            const timestamp = await getBlockTimestamp(event.blockNumber);
+
+            transactions.push({
+                hash: event.transactionHash,
+                from: event.returnValues.from,
+                to: event.returnValues.to,
+                value: web3.utils.fromWei(event.returnValues.value, 'ether'),
+                timestamp: new Date(timestamp * 1000),
+            });
+        }
+    }
+
+    return transactions;
+};
+const getBlockTimestamp = async (blockNumber) => {
+    const block = await web3.eth.getBlock(blockNumber);
+    return block.timestamp;
+};
 
 module.exports = {
     createWallet,
