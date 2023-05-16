@@ -98,8 +98,9 @@ const swaggerOptions = {
               description: 'valor del movimiento o operacion en la blockchain.',
             },
             timestamp: {
-              type: 'timestamp',
-              description: 'timestamp.',
+              type: 'string',
+              format: 'date-time',
+              description: 'timestamp'
             },
           },
         },
@@ -148,6 +149,13 @@ const swaggerOptions = {
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
+
+
+
+
+
+
 
 module.exports = {
   swaggerUi,
