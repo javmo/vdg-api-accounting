@@ -22,6 +22,8 @@
   "bugs": {
     "url": "https://github.com/javmo/vdg-api-accounting/issues"
   },
+  
+  
   "homepage": "https://github.com/javmo/vdg-api-accounting#readme",
   "dependencies": {
     "@openzeppelin/contracts": "^4.8.3",
