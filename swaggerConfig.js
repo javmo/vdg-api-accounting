@@ -23,7 +23,8 @@ const swaggerOptions = {
               description: 'El nombre de la cuenta contable.',
             },
             balance: {
-              type: 'number',
+              type: 'string',
+              format: 'float',
               description: 'El saldo actual de la cuenta contable.',
             },
             type: {
@@ -94,7 +95,8 @@ const swaggerOptions = {
               description: 'La dirección de la cuenta TO',
             },
             value: {
-              type: 'number',
+              type: 'string',
+              format: 'float',
               description: 'valor del movimiento o operacion en la blockchain.',
             },
             timestamp: {
@@ -118,7 +120,8 @@ const swaggerOptions = {
               format: 'address',
             },
             amount: {
-              type: 'number',
+              type: 'string',
+              format: 'float',
               description: 'Importe contabilizado',
             },
             hash: {
@@ -132,6 +135,119 @@ const swaggerOptions = {
             },
           },
           required: ['description', 'debitAccountContract', 'creditAccountContract', 'contract'],
+        },
+        LoanDetails: {
+          type: 'object',
+          properties: {
+            borrower: {
+              type: 'string',
+              description: 'ID or Name of the borrower',
+            },
+            amount: {
+              type: 'string',
+              format: 'float',
+              description: 'Amount of the loan',
+            },
+            interestRate: {
+              type: 'string',
+              format: 'float',
+              description: 'Interest rate for the loan',
+            },
+            accruedInterest: {
+              type: 'string',
+              format: 'float',
+              description: 'Interest rate for the loan',
+            },
+            loanStart: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Start date of the loan',
+            },
+            loanActive: {
+              type: 'boolean',
+              description: 'Whether the loan is active or not',
+            },
+            startLoanEntry: {
+              type: 'string',
+              description: 'Entry of the start of the loan',
+            },
+            repayLoanEntry: {
+              type: 'string',
+              description: 'Entry of the repayment of the loan',
+            },
+            repayInterestLoanEntry: {
+              type: 'string',
+              description: 'Entry of the repayment of interest of the loan',
+            },
+            contract: {
+              type: 'string',
+              description: 'Contract address for the loan',
+            },
+          },
+          required: ['borrower', 'amount', 'interestRate', 'loanStart', 'loanActive', 'startLoanEntry', 'repayLoanEntry', 'repayInterestLoanEntry', 'contract'],
+        },
+        TransactionRawDetails: {
+          type: 'object',
+          properties: {
+            tx: {
+              type: 'string',
+              description: 'The transaction hash.',
+            },
+            receipt: {
+              type: 'object',
+              properties: {
+                transactionHash: {
+                  type: 'string',
+                  description: 'The transaction hash.',
+                },
+                transactionIndex: {
+                  type: 'integer',
+                  format: 'int64',
+                  description: 'Index of the transaction.',
+                },
+                blockHash: {
+                  type: 'string',
+                  description: 'Hash of the block where this transaction was in.',
+                },
+                blockNumber: {
+                  type: 'integer',
+                  format: 'int64',
+                  description: 'Block number where this transaction was in.',
+                },
+                from: {
+                  type: 'string',
+                  description: 'Address of the sender.',
+                },
+                to: {
+                  type: 'string',
+                  description: 'Address of the receiver.',
+                },
+                gasUsed: {
+                  type: 'integer',
+                  format: 'int64',
+                  description: 'The amount of gas used by this specific transaction alone.',
+                },
+                cumulativeGasUsed: {
+                  type: 'integer',
+                  format: 'int64',
+                  description: 'The total amount of gas used when this transaction was executed in the block.',
+                },
+                contractAddress: {
+                  type: 'string',
+                  nullable: true,
+                  description: 'The contract address created, if the transaction was a contract creation, otherwise null.',
+                },
+                logs: {
+                  type: 'array',
+                  items: {
+                    type: 'string',
+                  },
+                  description: 'Array of log events generated by this transaction.',
+                },
+              },
+            },
+          },
+          required: ['tx', 'receipt'],
         },
         ErrorResponse: {
           type: "object",

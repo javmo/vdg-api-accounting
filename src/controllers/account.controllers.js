@@ -127,7 +127,6 @@ const getAllAccountDetails = async (req, res) => {
             return accountDet;
         }));
 
-        logger.debug(JSON.stringify(result));
         res.status(201).send(result);
     } catch (error) {
         logger.error(`:fire: Error al interactuar con el contrato ${error}`);
@@ -159,7 +158,7 @@ async function getAccountsData(contractAddressAccount, accountTypeIndex, account
 
     return {
         name: accountName,
-        balance: parseFloat(accountBalance),
+        balance: web3.utils.fromWei(accountBalance, 'ether'),
         type: accountType,
         account: accountAddress,
         contract: contractAddressAccount

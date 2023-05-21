@@ -83,14 +83,12 @@ const getAllConfigurations = async (req, res) => {
 
         // Convertir la matriz de cuentas en objetos JSON
         const result = await Promise.all(configurationList.map(async configuration => {
-            console.log(configuration);
             const contractAddressConfiguration = configuration;
             const accountDet = getConfigurationData(contractAddressConfiguration);
 
             return accountDet;
         }));
 
-        logger.debug(JSON.stringify(result));
         res.status(201).send(result);
     } catch (error) {
         logger.error(`:fire: Error al interactuar con el contrato ${error}`);

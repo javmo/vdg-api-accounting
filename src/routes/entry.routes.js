@@ -32,6 +32,10 @@ const { createEntry, getAllEntry, getEntryByContract } = require('../controllers
  *     responses:
  *       201:
  *         description: Entrada creada con éxito.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TransactionRawDetails'
  *       500:
  *         description: Error al interactuar con el contrato.
  */
@@ -39,7 +43,7 @@ router.post("/:configurationContract", createEntry);
 
 /**
  * @swagger
- * /api/entry/{contract}:
+ * /api/entry/contract/{contract}:
  *   get:
  *     summary: Obtiene la información de una entrada específica por su dirección de contrato.
  *     tags: [entry]
@@ -60,11 +64,11 @@ router.post("/:configurationContract", createEntry);
  *       500:
  *         description: Error al interactuar con el contrato.
  */
-router.get("/:contract", getEntryByContract);
+router.get("/contract/:contract", getEntryByContract);
 
 /**
  * @swagger
- * /api/entry/all:
+ * /api/entry:
  *   get:
  *     summary: Obtiene la información de todas las entradas en el sistema de contabilidad.
  *     tags: [entry]
@@ -80,6 +84,6 @@ router.get("/:contract", getEntryByContract);
  *       500:
  *         description: Error al interactuar con el contrato.
  */
-router.get("/all", getAllEntry);
+router.get("/", getAllEntry);
 
 module.exports = router;
