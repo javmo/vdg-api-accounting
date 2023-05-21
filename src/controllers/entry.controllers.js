@@ -27,12 +27,13 @@ const createEntry = async (req, res) => {
         amount: ${amount}
         hash: ${hash}
         `);
+        const amountFix = web3.utils.toWei(amount, 'ether');
 
         const instanceEntrySystem = await EntrySystem.deployed();
         const coinbase = await getGenesisAddress();
         const result = await instanceEntrySystem.createEntry(
             configurationContract,
-            amount,
+            amountFix,
             hash,
             {from: coinbase}
             );
@@ -68,14 +69,12 @@ const getAllEntry = async (req, res) => {
 
         // Convertir la matriz de cuentas en objetos JSON
         const result = await Promise.all(entryList.map(async entry => {
-            console.log(entry);
             const contractAddressEntry = entry;
             const entryDet = getEntryData(contractAddressEntry);
 
             return entryDet;
         }));
 
-        logger.debug(JSON.stringify(result));
         res.status(201).send(result);
     } catch (error) {
         logger.error(`:fire: Error al interactuar con el contrato ${error}`);
@@ -96,7 +95,7 @@ async function getEntryData(contractAddressEntry) {
     return {
         debitAccountContract:debitAccountContract,
         creditAccountContract: creditAccountContract,
-        amount: parseFloat(amount),
+        amount: web3.utils.fromWei(amount, 'ether'),
         hash: hash,
         contract: contractAddressEntry
     };

@@ -44,6 +44,7 @@
 // require('dotenv').config();
 // const { MNEMONIC, PROJECT_ID } = process.env;
 require('dotenv').config();
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
 const rpcHost = process.env.RPC_HOST || '127.0.0.1';
@@ -111,7 +112,13 @@ module.exports = {
     },
     develop: {
       port: 8545
-    }
+    },
+    sepolia: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, process.env.RPC_PROD),
+      network_id: "11155111", // Actualiza esto con el ID de red de Sepolia si es conocido
+      gas: gas,
+      gasPrice: gasPrice,
+    },
   },
 
   // Set default mocha options here, use special reporters, etc.

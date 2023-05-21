@@ -1,8 +1,15 @@
 const Web3 = require("web3");
 const logger = require('../services/logger');
-const rpcHost = process.env.RPC_HOST || '127.0.0.1';
-const rpcPort = process.env.RPC_PORT || 8545;
-const rpcUrl = `http://${rpcHost}:${rpcPort}`;
+
+if (process.env.NODE_ENV === 'production') {
+  // En producción, usa una URL RPC diferente
+  rpcUrl = process.env.RPC_PROD;
+} else {
+  // En desarrollo, usa tu nodo local
+  const rpcHost = process.env.RPC_HOST || '127.0.0.1';
+  const rpcPort = process.env.RPC_PORT || 8545;
+  rpcUrl = `http://${rpcHost}:${rpcPort}`;
+}
 
 // Configura el proveedor de Web3 y la instancia del contrato
 const web3 = new Web3(rpcUrl);

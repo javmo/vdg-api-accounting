@@ -36,6 +36,7 @@ app.use('/api/account', require('./routes/account.routes'));
 app.use('/api/configuration', require('./routes/configuration.routes'));
 app.use('/api/entry', require('./routes/entry.routes'));
 app.use('/api/wallet', require('./routes/wallet.routes'));
+app.use('/api/loan', require('./routes/loan.routes'));
 // swagger routes
 logger.info(`📋 Version 1 docs are available at http://localhost:${process.env.PORT || 3000}/api-docs`);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

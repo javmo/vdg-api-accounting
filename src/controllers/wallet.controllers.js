@@ -72,12 +72,12 @@ const getTransactions = async (req, res) => {
         const currentBlockNumber = await web3.eth.getBlockNumber();
         const startBlock = Math.max(currentBlockNumber - 10000, 0);
 
-        const etherTransactions = await getEtherTransactions(address, startBlock, currentBlockNumber);
+        //const etherTransactions = await getEtherTransactions(address, startBlock, currentBlockNumber);
         const tokenTransactions = await getTokenTransactions(address, startBlock);
-        const transactions = etherTransactions.concat(tokenTransactions);
-        transactions.sort((a, b) => a.timestamp - b.timestamp);
+       // const transactions = etherTransactions.concat(tokenTransactions);
+       tokenTransactions.sort((a, b) => a.timestamp - b.timestamp);
 
-        res.status(200).send(transactions);
+        res.status(200).send(tokenTransactions);
     } catch (error) {
         logger.error(`:fire: Error al interactuar con el contrato ${error}`);
         res.status(500).send(`Error al interactuar con el contrato ${error}`);
@@ -93,12 +93,16 @@ const getEtherTransactions = async (address, startBlock, currentBlockNumber) => 
         for (const transaction of block.transactions) {
             if (transaction.from === address || transaction.to === address) {
                 const timestamp = await getBlockTimestamp(transaction.blockNumber);
+                let value = web3.utils.fromWei(transaction.value, 'ether');
+                if (transaction.from === address) {
+                    value = -value;
+                }
 
                 transactions.push({
                     hash: transaction.hash,
                     from: transaction.from,
                     to: transaction.to,
-                    value: web3.utils.fromWei(transaction.value, 'ether'),
+                    value: value,
                     timestamp: new Date(timestamp * 1000),
                 });
             }
@@ -125,11 +129,16 @@ const getTokenTransactions = async (address, startBlock) => {
         if (event.returnValues.from === address || event.returnValues.to === address) {
             const timestamp = await getBlockTimestamp(event.blockNumber);
 
+            let value = web3.utils.fromWei(event.returnValues.value, 'ether');
+            if (event.returnValues.from === address) {
+                value = -value;
+            }
+
             transactions.push({
                 hash: event.transactionHash,
                 from: event.returnValues.from,
                 to: event.returnValues.to,
-                value: web3.utils.fromWei(event.returnValues.value, 'ether'),
+                value: value,
                 timestamp: new Date(timestamp * 1000),
             });
         }

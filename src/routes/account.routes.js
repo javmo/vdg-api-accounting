@@ -118,56 +118,7 @@ router.get("/contract/:contract", getAccountByContract);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 tx:
- *                   type: string
- *                   description: El hash de la transacción en la que se creó la cuenta de activo.
- *                   example: "0x00e98fb5208e16685b00fac80d393f51304631701deddd607df4ed338bfb81c6"
- *                 receipt:
- *                   type: object
- *                   properties:
- *                     transactionHash:
- *                       type: string
- *                       description: El hash de la transacción.
- *                       example: "0x00e98fb5208e16685b00fac80d393f51304631701deddd607df4ed338bfb81c6"
- *                     transactionIndex:
- *                       type: integer
- *                       description: El índice de la transacción en el bloque.
- *                       example: 0
- *                     blockHash:
- *                       type: string
- *                       description: El hash del bloque que contiene la transacción.
- *                       example: "0x5c5a04d4de21d3ef03a72a7d53ba1f159c85b8561ca7161fb6d437b0a4437b1a"
- *                     blockNumber:
- *                       type: integer
- *                       description: El número del bloque que contiene la transacción.
- *                       example: 6
- *                     from:
- *                       type: string
- *                       description: La dirección del emisor de la transacción.
- *                       example: "0xea7b8f0c7dbb418963104077f0e2922f72296844"
- *                     to:
- *                       type: string
- *                       description: La dirección del destinatario de la transacción.
- *                       example: "0xb2aab6774565fa26df4c8ab5bbf749285ebd6bdd"
- *                     gasUsed:
- *                       type: integer
- *                       description: La cantidad de gas utilizado en la transacción.
- *                       example: 699945
- *                     cumulativeGasUsed:
- *                       type: integer
- *                       description: La cantidad acumulada de gas utilizado hasta este punto en el bloque.
- *                       example: 699945
- *                     contractAddress:
- *                       type: string
- *                       nullable: true
- *                       description: La dirección del contrato desplegado (si corresponde).
- *                       example: null
- *                     logs:
- *                       type: array
- *                       items: {}
- *                       description: Los eventos emitidos durante la transacción.
+ *               $ref: '#/components/schemas/TransactionRawDetails'
  *  
  *       500:
  *         description: Error al interactuar con el contrato.
@@ -210,56 +161,7 @@ router.post("/addAssetAccount", addAssetAccount);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 tx:
- *                   type: string
- *                   description: El hash de la transacción en la que se creó la cuenta de pasivo.
- *                   example: "0x00e98fb5208e16685b00fac80d393f51304631701deddd607df4ed338bfb81c6"
- *                 receipt:
- *                   type: object
- *                   properties:
- *                     transactionHash:
- *                       type: string
- *                       description: El hash de la transacción.
- *                       example: "0x00e98fb5208e16685b00fac80d393f51304631701deddd607df4ed338bfb81c6"
- *                     transactionIndex:
- *                       type: integer
- *                       description: El índice de la transacción en el bloque.
- *                       example: 0
- *                     blockHash:
- *                       type: string
- *                       description: El hash del bloque que contiene la transacción.
- *                       example: "0x5c5a04d4de21d3ef03a72a7d53ba1f159c85b8561ca7161fb6d437b0a4437b1a"
- *                     blockNumber:
- *                       type: integer
- *                       description: El número del bloque que contiene la transacción.
- *                       example: 6
- *                     from:
- *                       type: string
- *                       description: La dirección del emisor de la transacción.
- *                       example: "0xea7b8f0c7dbb418963104077f0e2922f72296844"
- *                     to:
- *                       type: string
- *                       description: La dirección del destinatario de la transacción.
- *                       example: "0xb2aab6774565fa26df4c8ab5bbf749285ebd6bdd"
- *                     gasUsed:
- *                       type: integer
- *                       description: La cantidad de gas utilizado en la transacción.
- *                       example: 699945
- *                     cumulativeGasUsed:
- *                       type: integer
- *                       description: La cantidad acumulada de gas utilizado hasta este punto en el bloque.
- *                       example: 699945
- *                     contractAddress:
- *                       type: string
- *                       nullable: true
- *                       description: La dirección del contrato desplegado (si corresponde).
- *                       example: null
- *                     logs:
- *                       type: array
- *                       items: {}
- *                       description: Los eventos emitidos durante la transacción.
+ *               $ref: '#/components/schemas/TransactionRawDetails'
  *  
  *       500:
  *         description: Error al interactuar con el contrato.
@@ -306,56 +208,7 @@ router.post("/addLiabilityAccount", addLiabilityAccount);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 tx:
- *                   type: string
- *                   description: El hash de la transacción en la que se creó la cuenta de pasivo.
- *                   example: "0x00e98fb5208e16685b00fac80d393f51304631701deddd607df4ed338bfb81c6"
- *                 receipt:
- *                   type: object
- *                   properties:
- *                     transactionHash:
- *                       type: string
- *                       description: El hash de la transacción.
- *                       example: "0x00e98fb5208e16685b00fac80d393f51304631701deddd607df4ed338bfb81c6"
- *                     transactionIndex:
- *                       type: integer
- *                       description: El índice de la transacción en el bloque.
- *                       example: 0
- *                     blockHash:
- *                       type: string
- *                       description: El hash del bloque que contiene la transacción.
- *                       example: "0x5c5a04d4de21d3ef03a72a7d53ba1f159c85b8561ca7161fb6d437b0a4437b1a"
- *                     blockNumber:
- *                       type: integer
- *                       description: El número del bloque que contiene la transacción.
- *                       example: 6
- *                     from:
- *                       type: string
- *                       description: La dirección del emisor de la transacción.
- *                       example: "0xea7b8f0c7dbb418963104077f0e2922f72296844"
- *                     to:
- *                       type: string
- *                       description: La dirección del destinatario de la transacción.
- *                       example: "0xb2aab6774565fa26df4c8ab5bbf749285ebd6bdd"
- *                     gasUsed:
- *                       type: integer
- *                       description: La cantidad de gas utilizado en la transacción.
- *                       example: 699945
- *                     cumulativeGasUsed:
- *                       type: integer
- *                       description: La cantidad acumulada de gas utilizado hasta este punto en el bloque.
- *                       example: 699945
- *                     contractAddress:
- *                       type: string
- *                       nullable: true
- *                       description: La dirección del contrato desplegado (si corresponde).
- *                       example: null
- *                     logs:
- *                       type: array
- *                       items: {}
- *                       description: Los eventos emitidos durante la transacción.
+ *               $ref: '#/components/schemas/TransactionRawDetails'
  *  
  *       500:
  *         description: Error al interactuar con el contrato.
