@@ -1,0 +1,552 @@
+{
+  "contractName": "IAccount",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getAccountName",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "debit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "credit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_accountName",
+          "type": "string"
+        }
+      ],
+      "name": "setAccountName",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTokenAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"credit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"debit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAccountName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getTokenAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_accountName\",\"type\":\"string\"}],\"name\":\"setAccountName\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Este contrato permite la gesti\\u00f3n de cuentas.\",\"kind\":\"dev\",\"methods\":{\"credit(uint256)\":{\"details\":\"Acredita una cantidad a la cuenta.\",\"params\":{\"_amount\":\"La cantidad a acreditar.\"}},\"debit(uint256)\":{\"details\":\"Debita una cantidad de la cuenta.\",\"params\":{\"_amount\":\"La cantidad a debitar.\"}},\"getAccountName()\":{\"details\":\"Devuelve el nombre de la cuenta.\",\"returns\":{\"_0\":\"El nombre de la cuenta.\"}},\"getBalance()\":{\"details\":\"Devuelve el saldo de la cuenta.\",\"returns\":{\"_0\":\"El saldo de la cuenta.\"}},\"getTokenAddress()\":{\"details\":\"Devuelve el addres vinculad tokenAddress.\",\"returns\":{\"_0\":\"El nombre de la cuenta.\"}},\"setAccountName(string)\":{\"details\":\"Actualiza el nombre de la cuenta.\",\"params\":{\"_accountName\":\"El nuevo nombre de la cuenta.\"}}},\"title\":\"AccountingSystem\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/accountingSystem/IAccount.sol\":\"IAccount\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/accountingSystem/IAccount.sol\":{\"keccak256\":\"0x7d2b1f771ba40fc0ae50d1ab367d6b718d001117537d33805df3b04b3e8b523b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://156e418c1da01e0315c112ef6e8411da5a9a2acdde824b1f9ded01e6847e74ee\",\"dweb:/ipfs/QmSNP9PEszEVBGv4j12hGSqUHDCRK3p7DzAzdAqy43ayEb\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n/**\r\n * @title AccountingSystem\r\n * @dev Este contrato permite la gestión de cuentas.\r\n */\r\n\r\ninterface IAccount {\r\n    /**\r\n     * @dev Devuelve el nombre de la cuenta.\r\n     * @return El nombre de la cuenta.\r\n     */\r\n    function getAccountName() external view returns (string memory);\r\n    /**\r\n     * @dev Debita una cantidad de la cuenta.\r\n     * @param _amount La cantidad a debitar.\r\n     */\r\n    function debit(uint256 _amount) external;\r\n    /**\r\n     * @dev Acredita una cantidad a la cuenta.\r\n     * @param _amount La cantidad a acreditar.\r\n     */\r\n    function credit(uint256 _amount) external;\r\n    /**\r\n     * @dev Devuelve el saldo de la cuenta.\r\n     * @return El saldo de la cuenta.\r\n     */\r\n    function getBalance() external view returns (uint256);\r\n    /**\r\n     * @dev Actualiza el nombre de la cuenta.\r\n     * @param _accountName El nuevo nombre de la cuenta.\r\n     */\r\n    function setAccountName(string memory _accountName) external;\r\n    /**\r\n     * @dev Devuelve el addres vinculad tokenAddress.\r\n     * @return El nombre de la cuenta.\r\n     */\r\n    function getTokenAddress() external view returns (address);\r\n\r\n}\r\n",
+  "sourcePath": "D:\\Workspaces\\vdg-api-accounting\\contracts\\accountingSystem\\IAccount.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/accountingSystem/IAccount.sol",
+    "exportedSymbols": {
+      "IAccount": [
+        1457
+      ]
+    },
+    "id": 1458,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1419,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:7"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 1420,
+          "nodeType": "StructuredDocumentation",
+          "src": "60:91:7",
+          "text": " @title AccountingSystem\n @dev Este contrato permite la gestión de cuentas."
+        },
+        "fullyImplemented": false,
+        "id": 1457,
+        "linearizedBaseContracts": [
+          1457
+        ],
+        "name": "IAccount",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 1421,
+              "nodeType": "StructuredDocumentation",
+              "src": "181:98:7",
+              "text": " @dev Devuelve el nombre de la cuenta.\n @return El nombre de la cuenta."
+            },
+            "functionSelector": "638dc2b5",
+            "id": 1426,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAccountName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1422,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "308:2:7"
+            },
+            "returnParameters": {
+              "id": 1425,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1424,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1426,
+                  "src": "334:13:7",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1423,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "334:6:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "333:15:7"
+            },
+            "scope": 1457,
+            "src": "285:64:7",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1427,
+              "nodeType": "StructuredDocumentation",
+              "src": "355:105:7",
+              "text": " @dev Debita una cantidad de la cuenta.\n @param _amount La cantidad a debitar."
+            },
+            "functionSelector": "e609d9fc",
+            "id": 1432,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "debit",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1430,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1429,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1432,
+                  "src": "481:15:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1428,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "481:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "480:17:7"
+            },
+            "returnParameters": {
+              "id": 1431,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "506:0:7"
+            },
+            "scope": 1457,
+            "src": "466:41:7",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1433,
+              "nodeType": "StructuredDocumentation",
+              "src": "513:108:7",
+              "text": " @dev Acredita una cantidad a la cuenta.\n @param _amount La cantidad a acreditar."
+            },
+            "functionSelector": "78da744b",
+            "id": 1438,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "credit",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1436,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1435,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1438,
+                  "src": "643:15:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1434,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "643:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "642:17:7"
+            },
+            "returnParameters": {
+              "id": 1437,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "668:0:7"
+            },
+            "scope": 1457,
+            "src": "627:42:7",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1439,
+              "nodeType": "StructuredDocumentation",
+              "src": "675:96:7",
+              "text": " @dev Devuelve el saldo de la cuenta.\n @return El saldo de la cuenta."
+            },
+            "functionSelector": "12065fe0",
+            "id": 1444,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1440,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "796:2:7"
+            },
+            "returnParameters": {
+              "id": 1443,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1442,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1444,
+                  "src": "822:7:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1441,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "822:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "821:9:7"
+            },
+            "scope": 1457,
+            "src": "777:54:7",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1445,
+              "nodeType": "StructuredDocumentation",
+              "src": "837:117:7",
+              "text": " @dev Actualiza el nombre de la cuenta.\n @param _accountName El nuevo nombre de la cuenta."
+            },
+            "functionSelector": "2e95adad",
+            "id": 1450,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setAccountName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1448,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1447,
+                  "mutability": "mutable",
+                  "name": "_accountName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1450,
+                  "src": "984:26:7",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1446,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "984:6:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "983:28:7"
+            },
+            "returnParameters": {
+              "id": 1449,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1020:0:7"
+            },
+            "scope": 1457,
+            "src": "960:61:7",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1451,
+              "nodeType": "StructuredDocumentation",
+              "src": "1027:107:7",
+              "text": " @dev Devuelve el addres vinculad tokenAddress.\n @return El nombre de la cuenta."
+            },
+            "functionSelector": "10fe9ae8",
+            "id": 1456,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getTokenAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1452,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1164:2:7"
+            },
+            "returnParameters": {
+              "id": 1455,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1454,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1456,
+                  "src": "1190:7:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1453,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1190:7:7",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1189:9:7"
+            },
+            "scope": 1457,
+            "src": "1140:59:7",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1458,
+        "src": "155:1049:7"
+      }
+    ],
+    "src": "33:1173:7"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2023-05-22T22:13:13.438Z",
+  "devdoc": {
+    "details": "Este contrato permite la gestión de cuentas.",
+    "kind": "dev",
+    "methods": {
+      "credit(uint256)": {
+        "details": "Acredita una cantidad a la cuenta.",
+        "params": {
+          "_amount": "La cantidad a acreditar."
+        }
+      },
+      "debit(uint256)": {
+        "details": "Debita una cantidad de la cuenta.",
+        "params": {
+          "_amount": "La cantidad a debitar."
+        }
+      },
+      "getAccountName()": {
+        "details": "Devuelve el nombre de la cuenta.",
+        "returns": {
+          "_0": "El nombre de la cuenta."
+        }
+      },
+      "getBalance()": {
+        "details": "Devuelve el saldo de la cuenta.",
+        "returns": {
+          "_0": "El saldo de la cuenta."
+        }
+      },
+      "getTokenAddress()": {
+        "details": "Devuelve el addres vinculad tokenAddress.",
+        "returns": {
+          "_0": "El nombre de la cuenta."
+        }
+      },
+      "setAccountName(string)": {
+        "details": "Actualiza el nombre de la cuenta.",
+        "params": {
+          "_accountName": "El nuevo nombre de la cuenta."
+        }
+      }
+    },
+    "title": "AccountingSystem",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

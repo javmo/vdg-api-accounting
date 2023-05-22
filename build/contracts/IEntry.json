@@ -1,0 +1,423 @@
+{
+  "contractName": "IEntry",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getDebitAccount",
+      "outputs": [
+        {
+          "internalType": "contract IAccount",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCreditAccount",
+      "outputs": [
+        {
+          "internalType": "contract IAccount",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getCreditAccount\",\"outputs\":[{\"internalType\":\"contract IAccount\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getDebitAccount\",\"outputs\":[{\"internalType\":\"contract IAccount\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Este contrato es la interfaz de asientos.\",\"kind\":\"dev\",\"methods\":{\"getAmount()\":{\"details\":\"Devuelve el importe del asiento.\",\"returns\":{\"_0\":\"importe del asiento.\"}},\"getCreditAccount()\":{\"details\":\"Devuelve el contrato de la cuenta al haber.\",\"returns\":{\"_0\":\"IAccount al haber.\"}},\"getDebitAccount()\":{\"details\":\"Devuelve el contrato de la cuenta al debe.\",\"returns\":{\"_0\":\"IAccount al debe.\"}},\"getHash()\":{\"details\":\"Devuelve el hash asociado al asientor.\",\"returns\":{\"_0\":\"bytes32 el hash.\"}}},\"title\":\"IEntry\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/entrySystem/IEntry.sol\":\"IEntry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/accountingSystem/IAccount.sol\":{\"keccak256\":\"0x7d2b1f771ba40fc0ae50d1ab367d6b718d001117537d33805df3b04b3e8b523b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://156e418c1da01e0315c112ef6e8411da5a9a2acdde824b1f9ded01e6847e74ee\",\"dweb:/ipfs/QmSNP9PEszEVBGv4j12hGSqUHDCRK3p7DzAzdAqy43ayEb\"]},\"project:/contracts/entrySystem/IEntry.sol\":{\"keccak256\":\"0x156e057f772bd634c6223705c9cb21a80f59a8a3488371e40d33ef85acc77300\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://868adbe57f50689511d6f7012c95db2aa4ffb22a16cb74bb32bbf67cd5381e2d\",\"dweb:/ipfs/QmRxL1ZAMEmLcuTsd7kj1tSq8X4QRitPiSyDVycJvDv7kP\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"../accountingSystem/IAccount.sol\";\r\n/**\r\n * @title IEntry\r\n * @dev Este contrato es la interfaz de asientos.\r\n */\r\n\r\ninterface IEntry {\r\n    /**\r\n     * @dev Devuelve el contrato de la cuenta al debe.\r\n     * @return IAccount al debe.\r\n     */\r\n    function getDebitAccount() external view returns (IAccount);\r\n\r\n    /**\r\n     * @dev Devuelve el contrato de la cuenta al haber.\r\n     * @return IAccount al haber.\r\n     */\r\n    function getCreditAccount() external view returns (IAccount);\r\n\r\n    /**\r\n     * @dev Devuelve el importe del asiento.\r\n     * @return importe del asiento.\r\n     */\r\n    function getAmount() external view returns (uint256);\r\n\r\n    /**\r\n     * @dev Devuelve el hash asociado al asientor.\r\n     * @return bytes32 el hash.\r\n     */\r\n    function getHash() external view returns (bytes32);\r\n\r\n}\r\n",
+  "sourcePath": "D:\\Workspaces\\vdg-api-accounting\\contracts\\entrySystem\\IEntry.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/entrySystem/IEntry.sol",
+    "exportedSymbols": {
+      "IAccount": [
+        1457
+      ],
+      "IEntry": [
+        2257
+      ]
+    },
+    "id": 2258,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2228,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:15"
+      },
+      {
+        "absolutePath": "project:/contracts/accountingSystem/IAccount.sol",
+        "file": "../accountingSystem/IAccount.sol",
+        "id": 2229,
+        "nodeType": "ImportDirective",
+        "scope": 2258,
+        "sourceUnit": 1458,
+        "src": "60:42:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 2230,
+          "nodeType": "StructuredDocumentation",
+          "src": "104:77:15",
+          "text": " @title IEntry\n @dev Este contrato es la interfaz de asientos."
+        },
+        "fullyImplemented": false,
+        "id": 2257,
+        "linearizedBaseContracts": [
+          2257
+        ],
+        "name": "IEntry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 2231,
+              "nodeType": "StructuredDocumentation",
+              "src": "209:102:15",
+              "text": " @dev Devuelve el contrato de la cuenta al debe.\n @return IAccount al debe."
+            },
+            "functionSelector": "ac21cb8e",
+            "id": 2237,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDebitAccount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2232,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "341:2:15"
+            },
+            "returnParameters": {
+              "id": 2236,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2235,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2237,
+                  "src": "367:8:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAccount_$1457",
+                    "typeString": "contract IAccount"
+                  },
+                  "typeName": {
+                    "id": 2234,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 2233,
+                      "name": "IAccount",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1457,
+                      "src": "367:8:15"
+                    },
+                    "referencedDeclaration": 1457,
+                    "src": "367:8:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAccount_$1457",
+                      "typeString": "contract IAccount"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "366:10:15"
+            },
+            "scope": 2257,
+            "src": "317:60:15",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 2238,
+              "nodeType": "StructuredDocumentation",
+              "src": "385:104:15",
+              "text": " @dev Devuelve el contrato de la cuenta al haber.\n @return IAccount al haber."
+            },
+            "functionSelector": "43b8865d",
+            "id": 2244,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCreditAccount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2239,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "520:2:15"
+            },
+            "returnParameters": {
+              "id": 2243,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2242,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2244,
+                  "src": "546:8:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAccount_$1457",
+                    "typeString": "contract IAccount"
+                  },
+                  "typeName": {
+                    "id": 2241,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 2240,
+                      "name": "IAccount",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1457,
+                      "src": "546:8:15"
+                    },
+                    "referencedDeclaration": 1457,
+                    "src": "546:8:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAccount_$1457",
+                      "typeString": "contract IAccount"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "545:10:15"
+            },
+            "scope": 2257,
+            "src": "495:61:15",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 2245,
+              "nodeType": "StructuredDocumentation",
+              "src": "564:95:15",
+              "text": " @dev Devuelve el importe del asiento.\n @return importe del asiento."
+            },
+            "functionSelector": "d321fe29",
+            "id": 2250,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAmount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2246,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "683:2:15"
+            },
+            "returnParameters": {
+              "id": 2249,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2248,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2250,
+                  "src": "709:7:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2247,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "709:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "708:9:15"
+            },
+            "scope": 2257,
+            "src": "665:53:15",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 2251,
+              "nodeType": "StructuredDocumentation",
+              "src": "726:97:15",
+              "text": " @dev Devuelve el hash asociado al asientor.\n @return bytes32 el hash."
+            },
+            "functionSelector": "d13319c4",
+            "id": 2256,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getHash",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2252,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "845:2:15"
+            },
+            "returnParameters": {
+              "id": 2255,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2254,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2256,
+                  "src": "871:7:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 2253,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "871:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "870:9:15"
+            },
+            "scope": 2257,
+            "src": "829:51:15",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 2258,
+        "src": "185:700:15"
+      }
+    ],
+    "src": "33:854:15"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2023-05-22T22:13:13.477Z",
+  "devdoc": {
+    "details": "Este contrato es la interfaz de asientos.",
+    "kind": "dev",
+    "methods": {
+      "getAmount()": {
+        "details": "Devuelve el importe del asiento.",
+        "returns": {
+          "_0": "importe del asiento."
+        }
+      },
+      "getCreditAccount()": {
+        "details": "Devuelve el contrato de la cuenta al haber.",
+        "returns": {
+          "_0": "IAccount al haber."
+        }
+      },
+      "getDebitAccount()": {
+        "details": "Devuelve el contrato de la cuenta al debe.",
+        "returns": {
+          "_0": "IAccount al debe."
+        }
+      },
+      "getHash()": {
+        "details": "Devuelve el hash asociado al asientor.",
+        "returns": {
+          "_0": "bytes32 el hash."
+        }
+      }
+    },
+    "title": "IEntry",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

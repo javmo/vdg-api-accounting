@@ -9,16 +9,6 @@ const { createWallet, getTransactions, getBalance, loadWallet  } = require('../c
  *   post:
  *     summary: Crea una address en la blockchain.
  *     tags: [wallet]
- *     requestBody:
- *       required: false
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               exampleField:
- *                 type: string
- *                 description: Un ejemplo de campo en la solicitud (si es necesario).
  *     responses:
  *       200:
  *         description: Wallet blockchain.

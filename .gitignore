@@ -4,7 +4,7 @@ dist/
 .env
 
 # Solidity artifact files
-build/
+
 
 # JetBrains IDE
 .idea/
