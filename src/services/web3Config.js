@@ -1,9 +1,11 @@
 const Web3 = require("web3");
 const logger = require('../services/logger');
+let rpcUrl = "";
 
 if (process.env.NODE_ENV === 'production') {
   // En producción, usa una URL RPC diferente
   rpcUrl = process.env.RPC_PROD;
+  console.log(rpcUrl);
 } else {
   // En desarrollo, usa tu nodo local
   const rpcHost = process.env.RPC_HOST || '127.0.0.1';

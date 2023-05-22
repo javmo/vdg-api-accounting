@@ -7,8 +7,8 @@
     "dev": "cross-env NODE_ENV=development nodemon src/index.js --ignore contracts migrations",
     "start": "node src/index.js",
     "migrate": "truffle migrate",
-    "deploy-and-start": "cross-env NODE_ENV=development npm run migrate && npm run start",
-    "deploy-and-start-prod": "cross-env NODE_ENV=production npm run migrate -- --network sepolia && npm run start",
+    "deploy-and-start": "cross-env NODE_ENV=development npm run migrate --f && npm run start",
+    "start-prod": "cross-env NODE_ENV=production npm run start",
     "postinstall": "npm run build",
     "build": "cross-env NODE_ENV=production ",
     "test": "echo \"Error: no test specified\" && exit 1"
