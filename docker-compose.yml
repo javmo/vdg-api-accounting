@@ -5,7 +5,7 @@ services:
     image: trufflesuite/ganache-cli:v6.12.2
     ports:
       - '8545:8545'
-    command: '-h 0.0.0.0 -i 5777'
+    command: '-h 0.0.0.0 -i 5777 --chainId 5777'
   vdg-web-accounting:
     image: javmo94/vdg-web-accounting:develop
     ports:

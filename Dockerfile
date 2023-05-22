@@ -16,11 +16,8 @@ COPY . .
 # Install Truffle globally
 RUN npm install -g truffle
 
-# Compile and deploy contracts
-RUN truffle compile
-
 # Expose the port the app runs on
 EXPOSE 4000
 
 # Start the server
-CMD [ "npm","run","deploy-and-start" ]
+CMD [ "npm","run","start-prod" ]

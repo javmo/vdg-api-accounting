@@ -7,11 +7,11 @@
     "dev": "cross-env NODE_ENV=development nodemon src/index.js --ignore contracts migrations",
     "start": "node src/index.js",
     "migrate": "truffle migrate",
-    "deploy-and-start": "npm run migrate && npm run start",
+    "deploy-and-start": "cross-env NODE_ENV=development npm run migrate --f && npm run start",
+    "start-prod": "cross-env NODE_ENV=production npm run start",
     "postinstall": "npm run build",
     "build": "cross-env NODE_ENV=production ",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "swagger-autogen": "node swagger.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/javmo/vdg-api-accounting#readme",
   "dependencies": {
+    "@openzeppelin/contracts": "^4.8.3",
+    "@truffle/hdwallet-provider": "^2.1.11",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
@@ -34,6 +36,7 @@
     "morgan": "^1.10.0",
     "node-emoji": "^1.11.0",
     "nodemon": "^2.0.22",
+    "swagger-autogen": "^2.23.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.2",
     "truffle-contract": "^4.0.31",
