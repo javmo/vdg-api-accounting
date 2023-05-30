@@ -8848,7 +8848,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-05-22T22:13:13.432Z",
+  "updatedAt": "2023-05-30T01:57:32.763Z",
   "devdoc": {
     "details": "Este contrato implementa la interfaz IAccount y representa una cuenta de activos en un sistema de contabilidad.",
     "kind": "dev",
