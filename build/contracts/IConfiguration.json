@@ -94,18 +94,18 @@
     "absolutePath": "project:/contracts/configurationSystem/IConfiguration.sol",
     "exportedSymbols": {
       "IAccount": [
-        1457
+        1407
       ],
       "IConfiguration": [
-        2065
+        1942
       ]
     },
-    "id": 2066,
+    "id": 1943,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2022,
+        "id": 1899,
         "literals": [
           "solidity",
           "^",
@@ -118,10 +118,10 @@
       {
         "absolutePath": "project:/contracts/accountingSystem/IAccount.sol",
         "file": "../accountingSystem/IAccount.sol",
-        "id": 2023,
+        "id": 1900,
         "nodeType": "ImportDirective",
-        "scope": 2066,
-        "sourceUnit": 1458,
+        "scope": 1943,
+        "sourceUnit": 1408,
         "src": "60:42:12",
         "symbolAliases": [],
         "unitAlias": ""
@@ -132,71 +132,71 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 2024,
+          "id": 1901,
           "nodeType": "StructuredDocumentation",
           "src": "104:100:12",
           "text": " @title IConfiguration\n @dev Este contrato es la configuracion de asientos contables."
         },
         "fullyImplemented": false,
-        "id": 2065,
+        "id": 1942,
         "linearizedBaseContracts": [
-          2065
+          1942
         ],
         "name": "IConfiguration",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "documentation": {
-              "id": 2025,
+              "id": 1902,
               "nodeType": "StructuredDocumentation",
               "src": "240:102:12",
               "text": " @dev Devuelve el contrato de la cuenta al debe.\n @return IAccount al debe."
             },
             "functionSelector": "ac21cb8e",
-            "id": 2031,
+            "id": 1908,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getDebitAccount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2026,
+              "id": 1903,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "372:2:12"
             },
             "returnParameters": {
-              "id": 2030,
+              "id": 1907,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2029,
+                  "id": 1906,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2031,
+                  "scope": 1908,
                   "src": "398:8:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IAccount_$1457",
+                    "typeIdentifier": "t_contract$_IAccount_$1407",
                     "typeString": "contract IAccount"
                   },
                   "typeName": {
-                    "id": 2028,
+                    "id": 1905,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 2027,
+                      "id": 1904,
                       "name": "IAccount",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 1457,
+                      "referencedDeclaration": 1407,
                       "src": "398:8:12"
                     },
-                    "referencedDeclaration": 1457,
+                    "referencedDeclaration": 1407,
                     "src": "398:8:12",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IAccount_$1457",
+                      "typeIdentifier": "t_contract$_IAccount_$1407",
                       "typeString": "contract IAccount"
                     }
                   },
@@ -205,7 +205,7 @@
               ],
               "src": "397:10:12"
             },
-            "scope": 2065,
+            "scope": 1942,
             "src": "348:60:12",
             "stateMutability": "view",
             "virtual": false,
@@ -213,56 +213,56 @@
           },
           {
             "documentation": {
-              "id": 2032,
+              "id": 1909,
               "nodeType": "StructuredDocumentation",
               "src": "416:104:12",
               "text": " @dev Devuelve el contrato de la cuenta al haber.\n @return IAccount al haber."
             },
             "functionSelector": "43b8865d",
-            "id": 2038,
+            "id": 1915,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCreditAccount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2033,
+              "id": 1910,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "551:2:12"
             },
             "returnParameters": {
-              "id": 2037,
+              "id": 1914,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2036,
+                  "id": 1913,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2038,
+                  "scope": 1915,
                   "src": "577:8:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IAccount_$1457",
+                    "typeIdentifier": "t_contract$_IAccount_$1407",
                     "typeString": "contract IAccount"
                   },
                   "typeName": {
-                    "id": 2035,
+                    "id": 1912,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 2034,
+                      "id": 1911,
                       "name": "IAccount",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 1457,
+                      "referencedDeclaration": 1407,
                       "src": "577:8:12"
                     },
-                    "referencedDeclaration": 1457,
+                    "referencedDeclaration": 1407,
                     "src": "577:8:12",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IAccount_$1457",
+                      "typeIdentifier": "t_contract$_IAccount_$1407",
                       "typeString": "contract IAccount"
                     }
                   },
@@ -271,7 +271,7 @@
               ],
               "src": "576:10:12"
             },
-            "scope": 2065,
+            "scope": 1942,
             "src": "526:61:12",
             "stateMutability": "view",
             "virtual": false,
@@ -279,35 +279,35 @@
           },
           {
             "documentation": {
-              "id": 2039,
+              "id": 1916,
               "nodeType": "StructuredDocumentation",
               "src": "595:150:12",
               "text": " @dev Devuelve la descripcion de la configuracion del asiento.\n @return string descripcion de la configuracion del asiento."
             },
             "functionSelector": "1a092541",
-            "id": 2044,
+            "id": 1921,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getDescription",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2040,
+              "id": 1917,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "774:2:12"
             },
             "returnParameters": {
-              "id": 2043,
+              "id": 1920,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2042,
+                  "id": 1919,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2044,
+                  "scope": 1921,
                   "src": "800:13:12",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -316,7 +316,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2041,
+                    "id": 1918,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "800:6:12",
@@ -330,7 +330,7 @@
               ],
               "src": "799:15:12"
             },
-            "scope": 2065,
+            "scope": 1942,
             "src": "751:64:12",
             "stateMutability": "view",
             "virtual": false,
@@ -338,50 +338,50 @@
           },
           {
             "documentation": {
-              "id": 2045,
+              "id": 1922,
               "nodeType": "StructuredDocumentation",
               "src": "823:131:12",
               "text": " @dev Establece el contrato de la cuenta al debe.\n @param debitAccount El contrato de la cuenta al debe."
             },
             "functionSelector": "36fc9cee",
-            "id": 2051,
+            "id": 1928,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setDebitAccount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2049,
+              "id": 1926,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2048,
+                  "id": 1925,
                   "mutability": "mutable",
                   "name": "debitAccount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2051,
+                  "scope": 1928,
                   "src": "985:21:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IAccount_$1457",
+                    "typeIdentifier": "t_contract$_IAccount_$1407",
                     "typeString": "contract IAccount"
                   },
                   "typeName": {
-                    "id": 2047,
+                    "id": 1924,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 2046,
+                      "id": 1923,
                       "name": "IAccount",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 1457,
+                      "referencedDeclaration": 1407,
                       "src": "985:8:12"
                     },
-                    "referencedDeclaration": 1457,
+                    "referencedDeclaration": 1407,
                     "src": "985:8:12",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IAccount_$1457",
+                      "typeIdentifier": "t_contract$_IAccount_$1407",
                       "typeString": "contract IAccount"
                     }
                   },
@@ -391,12 +391,12 @@
               "src": "984:23:12"
             },
             "returnParameters": {
-              "id": 2050,
+              "id": 1927,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1016:0:12"
             },
-            "scope": 2065,
+            "scope": 1942,
             "src": "960:57:12",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -404,50 +404,50 @@
           },
           {
             "documentation": {
-              "id": 2052,
+              "id": 1929,
               "nodeType": "StructuredDocumentation",
               "src": "1025:134:12",
               "text": " @dev Establece el contrato de la cuenta al haber.\n @param creditAccount El contrato de la cuenta al haber."
             },
             "functionSelector": "83b59747",
-            "id": 2058,
+            "id": 1935,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setCreditAccount",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2056,
+              "id": 1933,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2055,
+                  "id": 1932,
                   "mutability": "mutable",
                   "name": "creditAccount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2058,
+                  "scope": 1935,
                   "src": "1191:22:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IAccount_$1457",
+                    "typeIdentifier": "t_contract$_IAccount_$1407",
                     "typeString": "contract IAccount"
                   },
                   "typeName": {
-                    "id": 2054,
+                    "id": 1931,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 2053,
+                      "id": 1930,
                       "name": "IAccount",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 1457,
+                      "referencedDeclaration": 1407,
                       "src": "1191:8:12"
                     },
-                    "referencedDeclaration": 1457,
+                    "referencedDeclaration": 1407,
                     "src": "1191:8:12",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IAccount_$1457",
+                      "typeIdentifier": "t_contract$_IAccount_$1407",
                       "typeString": "contract IAccount"
                     }
                   },
@@ -457,12 +457,12 @@
               "src": "1190:24:12"
             },
             "returnParameters": {
-              "id": 2057,
+              "id": 1934,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1223:0:12"
             },
-            "scope": 2065,
+            "scope": 1942,
             "src": "1165:59:12",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -470,29 +470,29 @@
           },
           {
             "documentation": {
-              "id": 2059,
+              "id": 1936,
               "nodeType": "StructuredDocumentation",
               "src": "1232:158:12",
               "text": " @dev Establece la descripcion de la configuracion del asiento.\n @param description La descripcion de la configuracion del asiento."
             },
             "functionSelector": "90c3f38f",
-            "id": 2064,
+            "id": 1941,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setDescription",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2062,
+              "id": 1939,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2061,
+                  "id": 1938,
                   "mutability": "mutable",
                   "name": "description",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2064,
+                  "scope": 1941,
                   "src": "1420:25:12",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -501,7 +501,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2060,
+                    "id": 1937,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1420:6:12",
@@ -516,19 +516,19 @@
               "src": "1419:27:12"
             },
             "returnParameters": {
-              "id": 2063,
+              "id": 1940,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1455:0:12"
             },
-            "scope": 2065,
+            "scope": 1942,
             "src": "1396:60:12",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2066,
+        "scope": 1943,
         "src": "208:1253:12"
       }
     ],
@@ -540,7 +540,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-05-30T01:57:32.782Z",
+  "updatedAt": "2023-05-31T18:47:41.672Z",
   "devdoc": {
     "details": "Este contrato es la configuracion de asientos contables.",
     "kind": "dev",

@@ -24,8 +24,9 @@ const { createEntry, getAllEntry, getEntryByContract } = require('../controllers
  *             type: object
  *             properties:
  *               amount:
- *                 type: number
+ *                 type: string
  *                 description: Monto de la transacción.
+ *                 example: "10000"
  *               hash:
  *                 type: string
  *                 description: Hash asociado a la transacción.
