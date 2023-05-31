@@ -11,10 +11,8 @@ import "../tokens/AccountingToken.sol";
 contract AssetAccount is IAccount {
     string public accountName;
     address public owner;
-    uint256 public balance;
     address public tokenAddress;
     AccountingToken private token;
-    uint8 public constant decimals = 18;
 
     /**
      * @dev Constructor de la cuenta de activos que establece el nombre de la cuenta y el propietario.
@@ -46,19 +44,13 @@ contract AssetAccount is IAccount {
         require(msg.sender == owner, "Only the owner can perform this action.");
         accountName = _accountName;
     }
-    event DebugAmount(uint256 amount);
-    event DebugTokenAmount(uint256 tokenAmount);
 
     /**
      * @dev Debita una cantidad de la cuenta.
      * @param _amount La cantidad a debitar.
      */
     function debit(uint256 _amount) public override {
-        emit DebugAmount(_amount);
-        uint256 tokenAmount = toTokenUnits(_amount);
-        emit DebugTokenAmount(tokenAmount);
-        token.mint(tokenAddress, tokenAmount);
-        balance += _amount;
+        token.mint(tokenAddress, _amount);
     }
 
     /**
@@ -66,10 +58,8 @@ contract AssetAccount is IAccount {
      * @param _amount La cantidad a acreditar.
      */
     function credit(uint256 _amount) public override {
-        uint256 tokenAmount = toTokenUnits(_amount);
-        require(balance >= _amount, "Insufficient balance.");
-        token.burn(tokenAddress, tokenAmount);
-        balance -= _amount;
+        require(token.balanceOf(tokenAddress) >= _amount, "Insufficient balance.");
+        token.burn(tokenAddress, _amount);
     }
     
     /**
@@ -77,7 +67,7 @@ contract AssetAccount is IAccount {
      * @return El saldo actual de la cuenta.
      */
     function getBalance() external view override returns (uint256) {
-        return balance;
+        return token.balanceOf(tokenAddress);
     }
 
     /**
@@ -86,10 +76,6 @@ contract AssetAccount is IAccount {
      */
     function getTokenAddress() external view override returns (address) {
         return tokenAddress;
-    }
-
-    function toTokenUnits(uint256 amount) internal pure returns (uint256) {
-    return amount * (10 ** decimals);
     }
 
 }

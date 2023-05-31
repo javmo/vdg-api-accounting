@@ -18,6 +18,7 @@ const createWallet = async (req, res) => {
         const coinbase = await getGenesisAddress();
         const instanceObligationToken = await ObligationToken.deployed();
         const gitfAmount = web3.utils.toWei('100', 'ether');
+        console.log(coinbase);
         await instanceObligationToken.transfer(
             account.address,
             gitfAmount,

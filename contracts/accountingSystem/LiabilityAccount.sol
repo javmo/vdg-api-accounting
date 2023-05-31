@@ -9,12 +9,10 @@ import "../tokens/AccountingToken.sol";
  * @dev Contrato para una cuenta de pasivo.
  */
 contract LiabilityAccount is IAccount {
-    uint256 public balance;
     string public accountName;
     address public owner;
     address public tokenAddress;
     AccountingToken private token;
-    uint8 public constant decimals = 18;
 
     constructor(string memory _accountName, address _tokenAddress, address instanceAccountingToken) {
         owner = msg.sender;
@@ -45,10 +43,8 @@ contract LiabilityAccount is IAccount {
      * @param _amount Cantidad a debitar.
      */
     function debit(uint256 _amount) public override {
-        uint256 tokenAmount = toTokenUnits(_amount);
-        require(balance >= _amount, "Insufficient balance.");
-        token.burn(tokenAddress, tokenAmount);
-        balance -= _amount;
+        require(token.balanceOf(tokenAddress) >= _amount, "Insufficient balance.");
+        token.burn(tokenAddress, _amount);
     }
 
     /**
@@ -56,9 +52,7 @@ contract LiabilityAccount is IAccount {
      * @param _amount Cantidad a acreditar.
      */
     function credit(uint256 _amount) public override {
-        uint256 tokenAmount = toTokenUnits(_amount);
-        token.mint(tokenAddress, tokenAmount);
-        balance += _amount;
+        token.mint(tokenAddress, _amount);
     }
 
     /**
@@ -66,7 +60,7 @@ contract LiabilityAccount is IAccount {
      * @return uint256 Balance de la cuenta.
      */
     function getBalance() external view override returns (uint256) {
-        return balance;
+        return token.balanceOf(tokenAddress);
     }
 
     /**
@@ -77,7 +71,4 @@ contract LiabilityAccount is IAccount {
         return tokenAddress;
     }
     
-    function toTokenUnits(uint256 amount) internal pure returns (uint256) {
-    return amount * (10 ** decimals);
-    }
 }

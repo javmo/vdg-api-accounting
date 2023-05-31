@@ -12,10 +12,8 @@ contract ResultAccount is IAccount {
     string public accountName;
     address public owner;
     bool public isExpense;
-    uint256 public balance;
     address public tokenAddress;
     AccountingToken private token;
-    uint8 public constant decimals = 18;
 
 
     /**
@@ -53,14 +51,11 @@ contract ResultAccount is IAccount {
      * @param _amount Monto a debitar en la cuenta.
      */
     function debit(uint256 _amount) public override {
-        uint256 tokenAmount = toTokenUnits(_amount);
         if (isExpense) {
-            token.mint(tokenAddress, tokenAmount);
-            balance += _amount;
+            token.mint(tokenAddress, _amount);
         } else {
-            require(balance >= _amount, "Insufficient balance.");
-            token.burn(tokenAddress, tokenAmount);
-            balance -= _amount;
+            require(token.balanceOf(tokenAddress) >= _amount, "Insufficient balance.");
+            token.burn(tokenAddress, _amount);
         }
     }
 
@@ -69,14 +64,11 @@ contract ResultAccount is IAccount {
      * @param _amount Monto a acreditar en la cuenta.
      */
     function credit(uint256 _amount) public override {
-        uint256 tokenAmount = toTokenUnits(_amount);
         if (isExpense) {
-            require(balance >= _amount, "Insufficient balance.");
-            token.burn(tokenAddress, tokenAmount);
-            balance -= _amount;
+            require(token.balanceOf(tokenAddress) >= _amount, "Insufficient balance.");
+            token.burn(tokenAddress, _amount);
         } else {
-            token.mint(tokenAddress, tokenAmount);
-            balance += _amount;
+            token.mint(tokenAddress, _amount);
         }
     }
 
@@ -85,7 +77,7 @@ contract ResultAccount is IAccount {
      * @return El balance de la cuenta.
      */
     function getBalance() external view override returns (uint256) {
-        return balance;
+        return token.balanceOf(tokenAddress);
     }
 
     /**
@@ -94,9 +86,5 @@ contract ResultAccount is IAccount {
      */
     function getTokenAddress() external view override returns (address) {
         return tokenAddress;
-    }
-
-    function toTokenUnits(uint256 amount) internal pure returns (uint256) {
-    return amount * (10 ** decimals);
     }
 }

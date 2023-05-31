@@ -1,5 +1,6 @@
 const Web3 = require("web3");
 const logger = require('../services/logger');
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 let rpcUrl = "";
 
 if (process.env.NODE_ENV === 'production') {
@@ -15,7 +16,17 @@ if (process.env.NODE_ENV === 'production') {
 
 // Configura el proveedor de Web3 y la instancia del contrato
 const web3 = new Web3(rpcUrl);
-const provider = new Web3.providers.HttpProvider(rpcUrl);
+
+
+let provider;
+
+if (process.env.NODE_ENV === 'production') {
+    provider = new HDWalletProvider(process.env.MNEMONIC, rpcUrl);
+} else {
+    provider = new Web3.providers.HttpProvider(rpcUrl);
+}
+
+
 
 web3.eth.getNodeInfo()
     .then(nodeInfo => {
@@ -26,18 +37,18 @@ web3.eth.getNodeInfo()
     });
 
 // Se busca si hay una address en las variables de ambiente sino se usa la coinbase de la blockchain
-const getGenesisAddress = () => {
-    return web3.eth.getCoinbase()
-      .then(address => {
-        const genesisAddress = process.env.GENESIS_ADDRESS || address;
-        logger.info(`:key: calling a contract with Genesis Address: ${genesisAddress}`);
-        return genesisAddress;
-      })
-      .catch(e => {
-        logger.warn(`:no_entry: Problem coinbase address-` + e);
-        return null;
-      });
-  };
+const getGenesisAddress = async () => {
+  if (process.env.NODE_ENV === 'production') {
+    const genesisAddress = process.env.GENESIS_ADDRESS;
+    
+    logger.info(`:key: calling a contract with Genesis Address: ${genesisAddress} `);
+    return genesisAddress;
+  } else {
+    const genesisAddress = await web3.eth.getCoinbase();
+    logger.info(`:key: calling a contract with Genesis Address: ${genesisAddress}`);
+    return genesisAddress;
+  }
+};
 
 
 module.exports = {
